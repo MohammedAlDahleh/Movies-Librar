@@ -17,7 +17,7 @@ const port = 3000;
 app.get('/trending', hundleTrending);
 app.get('/search', hundleSearch);
 app.get('/id', hundleSearchId);
-app.get('/image', hundleImage);
+// app.get('/image', hundleImage);
 app.get('/', handleHomePage);
 
 
@@ -37,7 +37,7 @@ function handleFavorite(req, res) {
 }
 function hundleTrending(req, res) {
 
-    //const url = `https://api.themoviedb.org/3/trending/all/week?api_key=${apiKey}`;
+    const url = `https://api.themoviedb.org/3/trending/all/week?api_key=${apiKey}`;
    // const url = `https://api.themoviedb.org/3/trending/all/week?api_key=37ddc7081e348bf246a42f3be2b3dfd0&language=en-US`;
 
     axios.get(url)
@@ -56,8 +56,7 @@ function hundleTrending(req, res) {
   
   function hundleSearch(req, res) {
     let movieName = req.query.movieName;
-     
-    let url = `https://api.themoviedb.org/3/search/movie?api_key=668baa4bb128a32b82fe0c15b21dd699&language=en-US&query=${movieName}&page=2`
+    let url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${movieName}&page=2`
     //`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movieName}&page=2`;
 
     axios.get(url)
@@ -73,7 +72,7 @@ function hundleTrending(req, res) {
 
   function hundleSearchId(req, res) {
     let movieId = req.query.movieId;
-    let url = `https://api.themoviedb.org/3/search/movie?api_key=668baa4bb128a32b82fe0c15b21dd699&language=en-US&query=${movieId}&page=2`;
+    let url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${movieId}&page=2`;
     //`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&page=2`;
     // axios.get().then().catch() 
     axios.get(url)
@@ -87,20 +86,20 @@ function hundleTrending(req, res) {
       })
   }
 
-  function hundleImage(req, res) {
-    let movieId = req.query.movieId;
-    let url = `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${apiKey}&language=en-US`;
-    // axios.get().then().catch() 
-    axios.get(url)
-      .then(result => {
-        // console.log(result.data);
-        res.json(result.data)
-      })
-      .catch((error) => {
-        console.log(error);
-        res.send("Searching for data image")
-      })
-  }
+  // function hundleImage(req, res) {
+  //   let movieId = req.query.movieId;
+  //   let url = `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${apiKey}&language=en-US`;
+  //   // axios.get().then().catch() 
+  //   axios.get(url)
+  //     .then(result => {
+  //       // console.log(result.data);
+  //       res.json(result.data)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       res.send("Searching for data image")
+  //     })
+  // }
 
 app.get('/error',(req,res) => res.send(error()));
 
