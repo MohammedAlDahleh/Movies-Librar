@@ -17,7 +17,7 @@ const port = 3000;
 app.get('/trending', hundleTrending);
 app.get('/search', hundleSearch);
 app.get('/id', hundleSearchId);
-// app.get('/image', hundleImage);
+app.get('/image', hundleImage);
 app.get('/', handleHomePage);
 
 
@@ -86,20 +86,20 @@ function hundleTrending(req, res) {
       })
   }
 
-  // function hundleImage(req, res) {
-  //   let movieId = req.query.movieId;
-  //   let url = `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${apiKey}&language=en-US`;
-  //   // axios.get().then().catch() 
-  //   axios.get(url)
-  //     .then(result => {
-  //       // console.log(result.data);
-  //       res.json(result.data)
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       res.send("Searching for data image")
-  //     })
-  // }
+  function hundleImage(req, res) {
+    let movieId = req.query.movieId;
+    let url = `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${apiKey}&language=en-US`;
+    // axios.get().then().catch() 
+    axios.get(url)
+      .then(result => {
+        // console.log(result.data);
+        res.json(result.data)
+      })
+      .catch((error) => {
+        console.log(error);
+        res.send("Searching for data image")
+      })
+  }
 
 app.get('/error',(req,res) => res.send(error()));
 
