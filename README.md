@@ -6,8 +6,8 @@
 
 ## WRRC
 ![assests](/assests/WRRC.PNG)
-![assests](/assestsWRRC with API.PNG)
-![assests](/assestsWRRC with DB.PNG)
+![assests](/assests/WRRC with API.PNG)
+![assests](/assests/WRRC with DB.PNG)
 
 ## Overview
 I build server to send data to frontend,git Home Page and /favorite, Handle errors (status 500,status 404);
