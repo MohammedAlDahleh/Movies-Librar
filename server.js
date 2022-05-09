@@ -33,6 +33,9 @@ app.get('/image', hundleImage);
 app.get('/', handleHomePage);
 app.post('/addMovie',handelAdd);
 app.get('/getMovie',handelGet);
+app.put("/UPDATE/:updateName", handleUpdate);
+app.delete("/DELETE", handleDelete);
+app.get("/getMoviesById", handleGetById);
 app.use(handleError);
 
 function handelAdd(req,res){
@@ -53,6 +56,38 @@ function handelAdd(req,res){
 
   // res.send("Adding to DB");
 
+  function handleUpdate(req, res) {
+    const { name, time, summary, image } = req.body;
+    const { updateName } = req.params;
+    let sql = `UPDATE movie SET name=$1, time=$2, summary=$3, image=$4 WHERE id = $5 RETURNING *;`  // sql query
+    let values = [name, time, summary, image, updateName];
+    client.query(sql, values).then((result) => {
+      // console.log(result.rows);
+      return res.status(200).json(result.rows);
+    }).catch()
+  }
+
+  function handleDelete(req, res) {
+    const  movieId  = req.query.id
+    let sql = 'DELETE FROM movie WHERE id=$1;'
+    let value = [movieId];
+    client.query(sql, value).then(result => {
+      console.log(result);
+      res.send("deleted");
+    }
+    ).catch()
+  }
+
+  function handleGetById(req, res) {
+
+    const { id } = req.query;
+    let sql = 'SELECT * from movie WHERE id=$1;'
+    let value = [id];
+    client.query(sql, value).then((result) => {
+      // console.log(result);
+      res.json(result.rows);
+    }).catch();
+  }
 
 function handelGet(req,res){
 let sql = 'SELECT * from movie;'

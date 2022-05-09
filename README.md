@@ -8,7 +8,7 @@
 ![assests](/assests/WRRC.PNG)
 ![assests](/assests/WRRC%20with%20API.PNG)
 ![assests](/assests/WRRC%20with%20DB.PNG)
-
+![assests](/assests/WRRC%20with%20DB1.PNG)
 ## Overview
 I build server to send data to frontend,git Home Page and /favorite, Handle errors (status 500,status 404);
 
@@ -67,5 +67,9 @@ client.connect().then(() => {
 
  * use client.query() to do CRUD
 
+5. Create request to the database
+ * /UPDATE/id: create an update request 
+ * /DELETE/id : create a delete request
+ * /getMovie/id: Create a get request
 ## Project Features
 <!-- What are the features included in you app -->
